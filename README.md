@@ -4,7 +4,7 @@
 composer require guzzlehttp/guzzle
 ```
 ```
- "Async/Await merupakan sebuah syntax khusus yang digunakan untuk menangani Promise supaya request data terpenuhi"
+ "Async/Await merupakan sebuah fitur yang digunakan untuk menangani Promise supaya request data terpenuhi"
  note: // $urlenp => url endpoint (ex: http://localhost/api/enp)
 ```
 ## Codeigniter 3
@@ -64,32 +64,32 @@ class AsyncModel extends Model{
 	}
 	public function get($urlenp)
     	{
-        // get data api dengan async await
-        $dataReq = $this->req->getAsync($urlenp)->then(function ($data) {
-            return $data;
-        });
-        $iniResp = $dataReq->wait();
-        $data = array(
-            "status" => $iniResp->getStatusCode(),
-            "res" => \json_decode($iniResp->getBody()),
-        );
-        return $data;
+		// get data api dengan async await
+		$dataReq = $this->req->getAsync($urlenp)->then(function ($data) {
+		    return $data;
+		});
+		$iniResp = $dataReq->wait();
+		$data = array(
+		    "status" => $iniResp->getStatusCode(),
+		    "res" => \json_decode($iniResp->getBody()),
+		);
+		return $data;
     	}
     	public function post($urlenp, $data)
     	{
-        // post data api dengan async await
-        $dataReq = $this->req->postAsync($urlenp, [
-            'headers' => [
-                'Content-Type: application/json',
-            ],
-            'json' => $data,
-        ]);
-        $iniResp = $dataReq->wait();
-        $res = array(
-            "status" => $iniResp->getStatusCode(),
-            "res" => \json_decode($iniResp->getBody()),
-        );
-        return $res;
+		// post data api dengan async await
+		$dataReq = $this->req->postAsync($urlenp, [
+		    'headers' => [
+			'Content-Type: application/json',
+		    ],
+		    'json' => $data,
+		]);
+		$iniResp = $dataReq->wait();
+		$res = array(
+		    "status" => $iniResp->getStatusCode(),
+		    "res" => \json_decode($iniResp->getBody()),
+		);
+		return $res;
     	}
 }
 ```
